@@ -1,5 +1,5 @@
 import { Alert, View, StyleSheet , Text ,Image } from 'react-native';
-
+//import { useNavigation } from '@react-navigation/native';
 
 import {getCurrentPositionAsync , useForegroundPermissions , PermissionStatus} from 'expo-location'
 import { Colors } from '../../constants/Colors';
@@ -9,6 +9,7 @@ import { getMapPreview } from '../../util/location';
 
 function LocationPicker() {
     const [pickedLocation , setPickedLocation] = useState();
+    const navigation = useNavigation();
 const [locationPermissionInformation,requestPermission] = useForegroundPermissions(); 
 
 async function verifyPermissions(){
@@ -44,7 +45,9 @@ async function getLocationHandler() {
         lng: location.coords.longitude
     });
 }
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    navigation.navigate('map');
+  }
 
   let locationPreview = <Text>No location picked yet.</Text>;
 
@@ -72,6 +75,7 @@ source={{
     </View>
   );
   }
+import { useNavigation } from '@react-navigation/native';
 
 export default LocationPicker;
 
